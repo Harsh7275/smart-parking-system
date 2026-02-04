@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking Lot System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🅿️ Smart Parking Lot System</h1>
+            <p>Manage parking slots effectively</p>
+        </header>
+
+        <nav class="navbar">
+            <button class="nav-btn active" onclick="switchTab('add-slot')">Add Slot</button>
+            <button class="nav-btn" onclick="switchTab('view-slots')">View All Slots</button>
+            <button class="nav-btn" onclick="switchTab('park-vehicle')">Park Vehicle</button>
+        </nav>
+
+        <!-- Add Slot Form Tab -->
+        <section id="add-slot" class="tab-content active">
+            <div class="card">
+                <h2>Add Parking Slot</h2>
+                <form id="addSlotForm">
+                    <div class="form-group">
+                        <label for="slotNumber">Slot Number:</label>
+                        <input type="number" id="slotNumber" name="slotNumber" required min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="isCovered" name="isCovered">
+                                <span>Is Covered</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="isEVCharging" name="isEVCharging">
+                                <span>EV Charging Available</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Slot</button>
+                </form>
+                <div id="addSlotMessage" class="message"></div>
+            </div>
+        </section>
+
+        <!-- View All Slots Tab -->
+        <section id="view-slots" class="tab-content">
+            <div class="card">
+                <h2>All Parking Slots</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Slots:</span>
+                        <span id="totalSlots" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Occupied:</span>
+                        <span id="occupiedSlots" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Available:</span>
+                        <span id="availableSlots" class="stat-value">0</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="loadSlots()">Refresh</button>
+                </div>
+
+                <div id="slotsContainer" class="slots-grid">
+                    <!-- Slots will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Park Vehicle Tab -->
+        <section id="park-vehicle" class="tab-content">
+            <div class="card">
+                <h2>Park a Vehicle</h2>
+                <form id="parkVehicleForm">
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="needsEV" name="needsEV">
+                                <span>Needs EV Charging</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="needsCover" name="needsCover">
+                                <span>Needs Covered Slot</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Find and Park Vehicle</button>
+                </form>
+                <div id="parkMessage" class="message"></div>
+            </div>
+
+            <div class="card">
+                <h2>Remove Vehicle from Slot</h2>
+                <form id="removeVehicleForm">
+                    <div class="form-group">
+                        <label for="slotToRemove">Select Slot:</label>
+                        <select id="slotToRemove" name="slotToRemove" required>
+                            <option value="">-- Choose a slot --</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Remove Vehicle</button>
+                </form>
+                <div id="removeMessage" class="message"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Smart Parking Lot System. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
