@@ -31,29 +31,32 @@ smart-parking1/
 
 ## Data Model
 
-| Field | Type | Description |
-|-------|------|-------------|
-| slotNo | number | Unique slot number |
-| isCovered | boolean | Whether the slot is covered |
+| Field        | Type    | Description                      |
+| ------------ | ------- | -------------------------------- |
+| slotNo       | number  | Unique slot number               |
+| isCovered    | boolean | Whether the slot is covered      |
 | isEVCharging | boolean | Whether EV charging is available |
-| isOccupied | boolean | Current occupancy status |
-| vehicleId | string | Identifier for parked vehicle |
+| isOccupied   | boolean | Current occupancy status         |
+| vehicleId    | string  | Identifier for parked vehicle    |
 
 ## Installation & Setup
 
 ### Backend Setup
 
 1. Navigate to the backend directory:
+
 ```bash
 cd backend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the server:
+
 ```bash
 npm start
 ```
@@ -63,11 +66,13 @@ The API will be available at `http://localhost:5000`
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
+
 ```bash
 cd frontend
 ```
 
 2. Open `index.html` in a web browser (use a local server for best results):
+
 ```bash
 # Using Python 3
 python -m http.server 8000
@@ -81,9 +86,11 @@ npx http-server
 ## API Endpoints
 
 ### 1. Add a Parking Slot
+
 - **Method**: POST
 - **Endpoint**: `/api/slots`
 - **Request Body**:
+
 ```json
 {
   "slotNo": 101,
@@ -91,7 +98,9 @@ npx http-server
   "isEVCharging": false
 }
 ```
+
 - **Response**:
+
 ```json
 {
   "success": true,
@@ -108,9 +117,11 @@ npx http-server
 ```
 
 ### 2. Get All Parking Slots
+
 - **Method**: GET
 - **Endpoint**: `/api/slots`
 - **Response**:
+
 ```json
 {
   "success": true,
@@ -119,16 +130,20 @@ npx http-server
 ```
 
 ### 3. Park a Vehicle
+
 - **Method**: POST
 - **Endpoint**: `/api/park`
 - **Request Body**:
+
 ```json
 {
   "needsEV": true,
   "needsCover": false
 }
 ```
+
 - **Response** (Success):
+
 ```json
 {
   "success": true,
@@ -141,7 +156,9 @@ npx http-server
   }
 }
 ```
+
 - **Response** (No Available Slot):
+
 ```json
 {
   "success": false,
@@ -151,9 +168,11 @@ npx http-server
 ```
 
 ### 4. Remove a Vehicle
+
 - **Method**: DELETE
 - **Endpoint**: `/api/slots/:slotId`
 - **Response**:
+
 ```json
 {
   "success": true,
@@ -168,6 +187,7 @@ npx http-server
 ## Usage Guide
 
 ### Adding a Slot
+
 1. Click **"Add Slot"** tab
 2. Enter Slot Number (must be unique)
 3. Check **"Is Covered"** if the slot is covered
@@ -175,6 +195,7 @@ npx http-server
 5. Click **"Add Slot"** button
 
 ### Viewing All Slots
+
 1. Click **"View All Slots"** tab
 2. See statistics (Total, Occupied, Available)
 3. View all slots with their attributes
@@ -183,6 +204,7 @@ npx http-server
    - 🔴 Red = Occupied
 
 ### Parking a Vehicle
+
 1. Click **"Park Vehicle"** tab
 2. Check **"Needs EV Charging"** if required
 3. Check **"Needs Covered Slot"** if required
@@ -191,6 +213,7 @@ npx http-server
 6. If no suitable slot: **"No slot available"** message
 
 ### Removing a Vehicle
+
 1. Click **"Park Vehicle"** tab
 2. Select an occupied slot from the dropdown
 3. Click **"Remove Vehicle"** button
@@ -231,6 +254,7 @@ The `ParkVehicle(needsEV, needsCover)` function:
 ## Testing
 
 ### Test Case 1: Basic Workflow
+
 1. Add 5 slots (mix of covered/EV charging)
 2. View all slots - verify they appear
 3. Park vehicle (no requirements)
@@ -239,16 +263,23 @@ The `ParkVehicle(needsEV, needsCover)` function:
 6. Verify slot is available again
 
 ### Test Case 2: No Slot Available
+
 1. Add 1 covered slot with EV charging
 2. Park vehicle (no requirements)
 3. Try to park another vehicle (no requirements)
 4. Should show "No slot available"
 
 ### Test Case 3: Filtering
+
 1. Add multiple slots with different attributes
 2. Park vehicle (needs EV) - should allocate EV charging slot
 3. Park vehicle (needs cover) - should allocate covered slot
 4. Park vehicle (needs both) - should allocate matching slot
+
+### Test Case 4: Validation
+
+1. Add parking slots (needs validation)- minimum one slot select EV charging or covered
+2. If we select both (covered and EV charging)- valid to add new slots
 
 ## Future Enhancements
 
@@ -267,4 +298,4 @@ ISC
 
 ## Author
 
-Assignment 5 - Smart Parking Lot System
+Harsh Patel - Smart Parking Lot System
